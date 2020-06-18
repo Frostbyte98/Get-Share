@@ -1,0 +1,76 @@
+Get&Share
+Anno Accademico 2019-2020
+GUIDO CESARANO e MARCO VERRI
+REQUISITI
+L’azienda Get&Share Inc. (che chiameremo per brevità “Azienda”) è una piccola start-up che offre un servizio di software sharing (freeware e payware) permettendo di caricare e scaricare software dal proprio portale.
+Il portale dell’Azienda (successivamente verrà chiamato semplicemente “Sistema”) è basato su una struttura client-server.
+In breve, qualche dettaglio sul Sistema:
+* all’amministratore di caricare i software a pagamento
+* agli utenti di caricare software (solo gratuiti) e scaricare software
+* ogni software è sviluppato da una softwarehouse, ha delle particolari piattaforme su cui è compatibile ed è importante tenere traccia della data di pubblicazione/uscita, così come della versione, del peso (in GB) e del prezzo.
+* l’acquisto verrà gestito tramite un carrello virtuale che terrà traccia oltre ovviamente del prezzo finale anche della quantità di prodotti acquistati della riga di fatturazione e dei prezzi parziali per la stampa (PDF e/o e-mail) di una ricevuta.
+* L’amministratore avrà accesso al sistema tramite username e password, previa registrazione obbligatoria (nome, cognome, e-mail e password)
+* Ogni utente avrà accesso al sistema tramite username e password, previa registrazione obbligatoria per poter scaricare o caricare software (nome, cognome, data di nascita, e-mail, password) NB: Non sarà consentito l’acquisto se minore di 18 anni
+Descrizione dell’utilizzo del sistema tramite casi d’uso:
+Caso d’uso UC1: Registrazione di un amministratore – Attore primario: un admin dell’Azienda.
+Scenario principale di successo:
+1. Un admin vuole registrarsi al sito.
+2. L’admin inserisce i suoi dati (nome, cognome, data di nascita, e-mail, password) e conferma. Il Sistema registra i dati e apre il profilo dell’amministratore.
+Estensioni:
+2a. L’admin annulla la registrazione e il sistema non registra nessun nuovo amministratore.
+Caso d’uso UC2: Inserimento di una nuova softwarehouse – Attore primario: un admin dell’Azienda
+1. Un admin vuole inserire una nuova softwarehouse al sito 
+2. L’admin inserisce la sua e-mail e la password. Il Sistema ne verifica la correttezza e procede ad autenticare l’amministratore
+3. L’admin sceglie l’attività “Inserisci nuova softwarehouse”
+4. L’admin procede ad inserire i dati sulla casa di sviluppo del software (nome, descrizione, data di fondazione). Il Sistema registra la softwarehouse.
+Il passo 4 verrà ripetuto finché l’admin non indica che ha terminato
+5. Il Sistema mostra un riepilogo di ciò che è stato inserito
+6. L’admin conferma tutti i dati inseriti e il Sistema li registra
+7. Da questo momento gli Utenti potranno vedere la nuova softwarehouse inserita
+
+Estensioni:
+2a. Credenziali dell’ amministratore non convalidate. Il Sistema termina l’esecuzione del caso d’uso.
+3-6a. L’admin annulla l’inserimento. Il Sistema non registra nessuna informazione sulla softwarehouse.
+Caso d’uso UC3: Inserimento di un nuovo software a pagamento – Attore primario: un admin dell’Azienda
+1. Un admin vuole inserire un nuovo software a pagamento.
+2. L’admin inserisce la sua e-mail e la password. Il Sistema ne verifica la correttezza e procede ad autenticare l’amministratore
+3. L’admin sceglie l’attività “Inserisci nuovo software”.
+4. L’admin seleziona da un elenco la softwarehouse e le piattaforme compatibili, poi inserisce i dati relativi al software(nome, prezzo, dimensione (in GB), versione, data di pubblicazione)
+Il passo 4 si ripete finché l’admin non indica di aver terminato
+5. Il Sistema mostra un riepilogo del nuovo software inserito
+6. L’admin conferma tutti i dati inseriti e il Sistema li registra
+7. Da questo momento gli Utenti potranno vedere il nuovo software inserito
+Estensioni:
+2a. Credenziali dell’ amministratore non convalidate. Il Sistema termina l’esecuzione del caso d’uso.
+3-6a. L’admin annulla l’inserimento. Il Sistema non registra nessuna informazione sul software.
+Caso d’uso UC4: Registrazione di un Utente Attore primario: un Utente
+1. Un utente vuole registrarsi al sito.
+2. L’utente inserisce i sui dati (nome, cognome, data di nascita, e-mail, password) e conferma. Il Sistema registra i dati e apre il profilo dell’utente.
+Estensioni:
+2a. l’utente annulla la registrazione e il sistema non registra nessun nuovo utente.
+Caso d’uso UC5: Inserimento di un software gratuito – Attore primario: un Utente
+1. Un’utente vuole inserire un software gratuito
+2. L’utente inserisce la sua e-mail e password. Il sistema ne verifica la correttezza e procede ad autenticare l’utente.
+3. L’utente sceglie l’attività “Inserisci nuovo software a pagamento”
+4. L’utente seleziona da un elenco le piattaforme compatibili, poi inserisci i dati relativi al software(nome, dimensione, versione, data di pubblicazione).
+Il passo 4 si ripete finché ;’utente non indica di aver terminato
+5. Il Sistema mostra un riepilogo del nuovo software inserito.
+6. L’utente conferma tutti i dati inseriti e il Sistema li registra.
+7. Da questo momento tutti gli Utenti posso vedere il nuovo software gratuito.
+Estensioni:
+2a. Credenziali dell’ Utente non convalidate. Il Sistema termina l’esecuzione del caso d’uso.
+   3-6a. l’utente annulla l’inserimento. Il Sistema non registra nessuna informazione sul software
+   
+   
+   
+Caso d’uso UC6: Acquisto di un software – Attore primario: un Utente [NON IMPLEMENTATO ANCORA]
+1. Un Utente vuole acquistare un software
+2. L’utente inserisce la sua e-mail e password. Il sistema ne verifica la correttezza e procede ad autenticare l’utente.
+3. L’utente sceglie un software da un elenco ordinato un software  e lo aggiunge al carrello.
+Il passo 3 si ripete finché l’utente non indica di aver terminato
+4. L’utente selezione, dal carrello, attività “procedi al pagamento”
+5. L’utente inserisce le sue generalità e conferma.
+6. L’utente selezione da un elenco un metodo di pagamento ed inserisci i dati relativi a quel tipo di pagamento.
+7. Il sistema mostra un riepilogo dell’ordine.
+8. L’utente conferma l’ordine.
+9. Da questo momento il/i software sarà visibile nel proprio profilo.

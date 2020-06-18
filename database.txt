@@ -1,0 +1,373 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.2
+-- Dumped by pg_dump version 12.2
+
+-- Started on 2020-06-17 13:42:37
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 203 (class 1259 OID 95197)
+-- Name: carts; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.carts (
+    id bigint NOT NULL
+);
+
+
+ALTER TABLE public.carts OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 95202)
+-- Name: credentials; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.credentials (
+    id bigint NOT NULL,
+    email character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    role character varying(255) NOT NULL,
+    user_id bigint
+);
+
+
+ALTER TABLE public.credentials OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 95195)
+-- Name: hibernate_sequence; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.hibernate_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.hibernate_sequence OWNER TO postgres;
+
+--
+-- TOC entry 205 (class 1259 OID 95210)
+-- Name: orderline; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.orderline (
+    id bigint NOT NULL,
+    numero_riga integer,
+    prezzo_parziale real,
+    cart_id bigint
+);
+
+
+ALTER TABLE public.orderline OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 95215)
+-- Name: software; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.software (
+    id bigint NOT NULL,
+    descrizione character varying(255) NOT NULL,
+    nome character varying(255) NOT NULL,
+    prezzo real NOT NULL,
+    data_di_pubblicazione date NOT NULL,
+    dimensione integer NOT NULL,
+    versione character varying(255) NOT NULL,
+    softwarehouse_id bigint,
+    user_id bigint
+);
+
+
+ALTER TABLE public.software OWNER TO postgres;
+
+--
+-- TOC entry 207 (class 1259 OID 95223)
+-- Name: softwarehouses; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.softwarehouses (
+    id bigint NOT NULL,
+    descrizione character varying(255),
+    data_di_fondazione date,
+    nome character varying(255) NOT NULL,
+    user_id bigint
+);
+
+
+ALTER TABLE public.softwarehouses OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 95231)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    data_di_nascita date NOT NULL,
+    nome character varying(255) NOT NULL,
+    cognome character varying(255) NOT NULL,
+    data_di_registrazione date NOT NULL,
+    cart_id bigint
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 2862 (class 0 OID 95197)
+-- Dependencies: 203
+-- Data for Name: carts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.carts (id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2863 (class 0 OID 95202)
+-- Dependencies: 204
+-- Data for Name: credentials; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.credentials (id, email, password, role, user_id) FROM stdin;
+1	billgates@outlook.com	$2a$10$GBa5hK8jZntItqpx6wXGhe32kDe/sdkR4b.5MErB8Vq641Gw7jaS2	ADMIN	2
+3	gui.cesarano@stud.uniroma3.it	$2a$10$/s.gnd1DSWRUGPHUn4rX7edYcP3lkmso3cUfxj08185ka8KGFd3vy	DEFAULT	4
+5	mar.verri@stud.uniroma3.it	$2a$10$Ma4EVGtf5K.Y/2LcnpiVgOL0gYGDpfOi7iIhSRzE0DyeI7P.7mdfW	DEFAULT	6
+\.
+
+
+--
+-- TOC entry 2864 (class 0 OID 95210)
+-- Dependencies: 205
+-- Data for Name: orderline; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.orderline (id, numero_riga, prezzo_parziale, cart_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2865 (class 0 OID 95215)
+-- Dependencies: 206
+-- Data for Name: software; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.software (id, descrizione, nome, prezzo, data_di_pubblicazione, dimensione, versione, softwarehouse_id, user_id) FROM stdin;
+17	Photo editing	Photoshop	299.99	1990-02-19	30	6	7	2
+18	Vector graphic	Illustrator	299.99	1987-01-01	40	6	7	2
+19	Video editing	Premier	399.99	2003-02-05	45	14	7	2
+20	UX & UI	XD	0	2019-01-28	15	13	7	2
+21	Suite ufficio	Office365	99.99	1990-11-19	25	9	12	2
+22	Winzozz	Windows10	89.99	2015-07-29	70	10	12	2
+23	Videogame subscription plan	GamePass	29.99	2019-03-17	0	2	12	2
+24	The worst Fallout ever	Fallout76	9.99	2018-10-05	80	1	9	6
+25	RPG bugged game	Skyrim	19.99	2011-11-11	60	5	9	6
+26	Mario has to save Peach	SuperMario64	4.99	1964-06-05	1	64	13	6
+27	Watching dogs all the time	Watch_Dogs	39.99	2014-05-27	55	3	16	6
+28	Silent Hill demo	P.T.	0	2014-08-12	5	1	11	4
+\.
+
+
+--
+-- TOC entry 2866 (class 0 OID 95223)
+-- Dependencies: 207
+-- Data for Name: softwarehouses; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.softwarehouses (id, descrizione, data_di_fondazione, nome, user_id) FROM stdin;
+7	Computer Graphic	1982-11-05	Adobe	2
+8	Videogame publisher	2008-03-11	Activision	2
+9	Bugs & Games	1986-02-08	Bethesda	2
+10	Videogame publisher	1979-08-15	Capcom	2
+11	E' uguale a PT	1969-09-06	Konami	2
+12	Winzozz developer	1975-04-04	Microsoft	2
+13	It's me Mariooo	1989-09-23	Nintendo	2
+14	Sh*t of Legends	2006-04-01	Riot	2
+15	Sonic developer	1951-01-05	SEGA	2
+16	Bugs everywhere	1986-06-09	Ubisoft	2
+\.
+
+
+--
+-- TOC entry 2867 (class 0 OID 95231)
+-- Dependencies: 208
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, data_di_nascita, nome, cognome, data_di_registrazione, cart_id) FROM stdin;
+2	1955-10-25	Bill	Gates	2020-06-17	\N
+4	1998-12-26	Guido	Cesarano	2020-06-17	\N
+6	1998-07-16	Marco	Verri	2020-06-17	\N
+\.
+
+
+--
+-- TOC entry 2873 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.hibernate_sequence', 28, true);
+
+
+--
+-- TOC entry 2712 (class 2606 OID 95201)
+-- Name: carts carts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.carts
+    ADD CONSTRAINT carts_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2714 (class 2606 OID 95209)
+-- Name: credentials credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.credentials
+    ADD CONSTRAINT credentials_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2718 (class 2606 OID 95214)
+-- Name: orderline orderline_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orderline
+    ADD CONSTRAINT orderline_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2720 (class 2606 OID 95222)
+-- Name: software software_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.software
+    ADD CONSTRAINT software_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2724 (class 2606 OID 95230)
+-- Name: softwarehouses softwarehouses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.softwarehouses
+    ADD CONSTRAINT softwarehouses_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2726 (class 2606 OID 95244)
+-- Name: softwarehouses uk_2qcrjc7sbolxal9m2h3ar7kx4; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.softwarehouses
+    ADD CONSTRAINT uk_2qcrjc7sbolxal9m2h3ar7kx4 UNIQUE (nome);
+
+
+--
+-- TOC entry 2716 (class 2606 OID 95240)
+-- Name: credentials uk_6pka8top3ggqmjvppakv4ygl8; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.credentials
+    ADD CONSTRAINT uk_6pka8top3ggqmjvppakv4ygl8 UNIQUE (email);
+
+
+--
+-- TOC entry 2722 (class 2606 OID 95242)
+-- Name: software uk_ft4p86h73fy6vf6h5fm0kf0f9; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.software
+    ADD CONSTRAINT uk_ft4p86h73fy6vf6h5fm0kf0f9 UNIQUE (nome);
+
+
+--
+-- TOC entry 2728 (class 2606 OID 95238)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2730 (class 2606 OID 95250)
+-- Name: orderline fk700333gi794fqjteav5d8hwqh; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.orderline
+    ADD CONSTRAINT fk700333gi794fqjteav5d8hwqh FOREIGN KEY (cart_id) REFERENCES public.carts(id);
+
+
+--
+-- TOC entry 2731 (class 2606 OID 95255)
+-- Name: software fk813uybop6vlcnl478kyoxmvk6; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.software
+    ADD CONSTRAINT fk813uybop6vlcnl478kyoxmvk6 FOREIGN KEY (softwarehouse_id) REFERENCES public.softwarehouses(id);
+
+
+--
+-- TOC entry 2732 (class 2606 OID 95260)
+-- Name: software fk88uxrntyo33rvyqh8qvv1qs4s; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.software
+    ADD CONSTRAINT fk88uxrntyo33rvyqh8qvv1qs4s FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- TOC entry 2729 (class 2606 OID 95245)
+-- Name: credentials fkcbcgksvnqvqxrrc4dwv3qys65; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.credentials
+    ADD CONSTRAINT fkcbcgksvnqvqxrrc4dwv3qys65 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- TOC entry 2733 (class 2606 OID 95265)
+-- Name: softwarehouses fkcp4h8cf5e4mclfccd69f2neu3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.softwarehouses
+    ADD CONSTRAINT fkcp4h8cf5e4mclfccd69f2neu3 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- TOC entry 2734 (class 2606 OID 95270)
+-- Name: users fkdv26y3bb4vdmsr89c9ppnx85w; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT fkdv26y3bb4vdmsr89c9ppnx85w FOREIGN KEY (cart_id) REFERENCES public.carts(id);
+
+
+-- Completed on 2020-06-17 13:42:37
+
+--
+-- PostgreSQL database dump complete
+--
+
